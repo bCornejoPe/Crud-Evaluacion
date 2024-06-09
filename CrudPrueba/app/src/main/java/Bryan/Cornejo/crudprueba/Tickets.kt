@@ -75,6 +75,13 @@ class Tickets : AppCompatActivity() {
             }
             return ListaTickets
         }
+      CoroutineScope(Dispatchers.IO).launch {
+          val actualizadoTicket = obtenerTickets()
+          withContext(Dispatchers.IO) {
+              (rcvTickets.adapter as? Adaptador)?.actualizarLista(actualizadoTicket)
+          }
+
+      }
 
         CoroutineScope(Dispatchers.IO).launch {
             val ticketsDB= obtenerTickets()

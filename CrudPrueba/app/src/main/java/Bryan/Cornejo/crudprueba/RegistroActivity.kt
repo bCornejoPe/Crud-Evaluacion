@@ -6,10 +6,17 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import modelo.ClaseConexion
+import java.util.UUID
 
 class RegistroActivity : AppCompatActivity() {
     @SuppressLint("WrongViewCast")
@@ -30,6 +37,21 @@ class RegistroActivity : AppCompatActivity() {
 
 
         btnRegistrar.setOnClickListener {
+            GlobalScope.launch (Dispatchers.IO){
+                val objConexion = ClaseConexion().cadenaConexion()
+
+                val crearUsuario = objConexion?.prepareStatement("Insert into tbUsuarios(UUID_usuario, correoElectronico, clave) Values(?,?.?)")!!
+                crearUsuario.setString(1,UUID.randomUUID().toString())
+                crearUsuario.setString(2,txtCorreoNuevo.text.toString())
+                crearUsuario.setString(3,txtContrasenaNueva.text.toString())
+                crearUsuario.executeUpdate()
+
+                withContext(Dispatchers.Main){
+                    Toast.makeText(this@RegistroActivity, "Usuario creado", Toast.LENGTH_SHORT).show()
+                    txtCorreoNuevo.setText("")
+                    txtContrasenaNueva.setText("")
+                }
+            }
         }
         btnRegresar.setOnClickListener {
             val Atras= Intent(this, MainActivity::class.java)

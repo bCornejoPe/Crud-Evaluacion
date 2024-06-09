@@ -8,6 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import modelo.ClaseConexion
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +31,21 @@ class MainActivity : AppCompatActivity() {
         //boton pasar pantalla de bienvenida
            btnIniciar.setOnClickListener {
                val PantallaInicio = Intent(this, BienvenidaActivity::class.java)
-               startActivity(PantallaInicio)
+               GlobalScope.launch (Dispatchers.IO){
+                   val objConexion =   ClaseConexion().cadenaConexion()
+
+                   val ComprobarUsuario = objConexion?.prepareStatement("Select * from tbUsuarios where correoElectronico =? and clave=?")!!
+                   ComprobarUsuario.setString(1,txtCorreo.text.toString())
+                   ComprobarUsuario.setString(2,txtContrasena.text.toString())
+
+                   val resultado= ComprobarUsuario.executeQuery()
+
+                   if(resultado.next()){
+                       startActivity(PantallaInicio)
+                   }else{
+                       println("Usuario no encontrado, verifique credenciales")
+                   }
+               }
            }
            btnUsuario.setOnClickListener {
                val PantallaUsuario= Intent(this,RegistroActivity:: class.java )
