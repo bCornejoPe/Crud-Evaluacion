@@ -10,6 +10,7 @@ data class Ticket(
     var CorreoAutor: String,
     var FechaCreacion: String,
     var Estado: String,
-    var FechaFinalizacion:  String
+    var FechaFinalizacion:  String,
+
 
 )

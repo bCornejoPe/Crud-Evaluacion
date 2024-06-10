@@ -75,13 +75,7 @@ class Tickets : AppCompatActivity() {
             }
             return ListaTickets
         }
-      CoroutineScope(Dispatchers.IO).launch {
-          val actualizadoTicket = obtenerTickets()
-          withContext(Dispatchers.IO) {
-              (rcvTickets.adapter as? Adaptador)?.actualizarLista(actualizadoTicket)
-          }
 
-      }
 
         CoroutineScope(Dispatchers.IO).launch {
             val ticketsDB= obtenerTickets()
@@ -98,7 +92,7 @@ class Tickets : AppCompatActivity() {
 
                 val objConexion = ClaseConexion().cadenaConexion()
 
-                val AgregadoTicket = objConexion?.prepareStatement("Insert into ticket (uuid, Autor, Titulo, Descripcion, CorreoAutor, FechaCreacion, Estado, FecjaFinalizacion) values(?,?,?,?,?,?,?,?)")!!
+                val AgregadoTicket = objConexion?.prepareStatement("Insert into Ticket (uuid, Autor, Titulo, Descripcion, CorreoAutor, FechaCreacion, Estado, FechaFinalizacion) values(?,?,?,?,?,?,?,?)")!!
 
                 AgregadoTicket.setString(1,UUID.randomUUID().toString())
                 AgregadoTicket.setString(2, txtAutor.text.toString())
@@ -109,6 +103,15 @@ class Tickets : AppCompatActivity() {
                 AgregadoTicket.setString(7, txtEstado.text.toString())
                 AgregadoTicket.setString(8, txtFinal.text.toString())
                 AgregadoTicket.executeUpdate()
+
+
+
+                    val actualizadoTicket = obtenerTickets()
+                    withContext(Dispatchers.Main) {
+                        (rcvTickets.adapter as? Adaptador)?.actualizarLista(actualizadoTicket)
+                    }
+
+
             }
 
         }

@@ -1,6 +1,8 @@
 package Bryan.Cornejo.crudprueba
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +17,13 @@ class BienvenidaActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val btnSiguiente= findViewById<Button>(R.id.btnSiguiente)
+
+        btnSiguiente.setOnClickListener{
+            val PantallaCositas= Intent(this,Tickets::class.java)
+            startActivity(PantallaCositas)
         }
     }
 }

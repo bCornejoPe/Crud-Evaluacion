@@ -22,20 +22,6 @@
         app:layout_constraintVertical_bias="0.322" />
 
     <EditText
-        android:id="@+id/txtTicket"
-        android:layout_width="170dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:hint="Numero de ticket"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.098" />
-
-    <EditText
         android:id="@+id/txtTitulo"
         android:layout_width="158dp"
         android:layout_height="47dp"
@@ -72,10 +58,9 @@
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.115" />
 
     <EditText
         android:id="@+id/txtDescripcion"

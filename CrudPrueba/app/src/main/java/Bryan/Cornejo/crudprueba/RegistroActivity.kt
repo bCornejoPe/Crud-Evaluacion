@@ -40,7 +40,7 @@ class RegistroActivity : AppCompatActivity() {
             GlobalScope.launch (Dispatchers.IO){
                 val objConexion = ClaseConexion().cadenaConexion()
 
-                val crearUsuario = objConexion?.prepareStatement("Insert into tbUsuarios(UUID_usuario, correoElectronico, clave) Values(?,?.?)")!!
+                val crearUsuario = objConexion?.prepareStatement("Insert into tbUsuarios(UUID_usuario, correoElectronico, clave) Values(?,?,?)")!!
                 crearUsuario.setString(1,UUID.randomUUID().toString())
                 crearUsuario.setString(2,txtCorreoNuevo.text.toString())
                 crearUsuario.setString(3,txtContrasenaNueva.text.toString())
