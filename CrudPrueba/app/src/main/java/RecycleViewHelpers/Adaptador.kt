@@ -56,7 +56,7 @@ class Adaptador(var Datos: List<Ticket>): RecyclerView.Adapter<ViewHolder>() {
 
             val objConexion = ClaseConexion().cadenaConexion()
 
-            val updateticket= objConexion?.prepareStatement("update ticket set Titulo = ? where uuid= ?")!!
+            val updateticket= objConexion?.prepareStatement("update Ticket set Titulo = ? where uuid= ?")!!
             updateticket.setString(1,Titulo)
             updateticket.setString(2,uuid)
             updateticket.executeUpdate()
