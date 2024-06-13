@@ -71,7 +71,6 @@ class Adaptador(var Datos: List<Ticket>): RecyclerView.Adapter<ViewHolder>() {
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        TODO("Not yet implemented")
 
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_crads, parent, false)
         return ViewHolder(vista)
